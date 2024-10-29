@@ -30,8 +30,12 @@ pushd $install_dir
     python3 -m venv $install_dir/venv
     ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip setuptools wheel gunicorn
     ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres]"
+    
+    ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx makemigrations
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx migrate
+    
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx rebuild
+    #ynh_hide_warnings $install_dir/venv/bin/python3 manage.py migrate
     #ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx init
 popd
 
