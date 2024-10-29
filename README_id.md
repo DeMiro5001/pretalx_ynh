@@ -3,47 +3,47 @@ N.B.: README ini dibuat secara otomatis oleh <https://github.com/YunoHost/apps/t
 Ini TIDAK boleh diedit dengan tangan.
 -->
 
-# Pretix untuk YunoHost
+# Pretalx untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/pretix.svg)](https://ci-apps.yunohost.org/ci/apps/pretix/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/pretix.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/pretix.maintain.svg)
+[![Tingkat integrasi](https://dash.yunohost.org/integration/pretalx.svg)](https://ci-apps.yunohost.org/ci/apps/pretalx/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/pretalx.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/pretalx.maintain.svg)
 
-[![Pasang Pretix dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretix)
+[![Pasang Pretalx dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretalx)
 
 *[Baca README ini dengan bahasa yang lain.](./ALL_README.md)*
 
-> *Paket ini memperbolehkan Anda untuk memasang Pretix secara cepat dan mudah pada server YunoHost.*  
+> *Paket ini memperbolehkan Anda untuk memasang Pretalx secara cepat dan mudah pada server YunoHost.*  
 > *Bila Anda tidak mempunyai YunoHost, silakan berkonsultasi dengan [panduan](https://yunohost.org/install) untuk mempelajari bagaimana untuk memasangnya.*
 
 ## Ringkasan
 
-Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
+Pretalx is a conference planning tool focused on providing the best experience for organisers, speakers, reviewers, and attendees alike. It handles the submission process with a configurable Call for Participation, the reviewing and selection of submissions, and the scheduling and release handling. After the event, pretalx allows speakers to receive feedback, upload their slides, and organisers to embed recordings.
 
-**Versi terkirim:** 2024.9.0~ynh1
+**Versi terkirim:** 2024.3.1~ynh1
 
-**Demo:** <https://pretix.eu/about/en/setup>
+**Demo:** <https://pretalx.com/p/try>
 
 ## Tangkapan Layar
 
-![Tangkapan Layar pada Pretix](./doc/screenshots/screenshot.png)
+![Tangkapan Layar pada Pretalx](./doc/screenshots/screenshot.png)
 
 ## Dokumentasi dan sumber daya
 
-- Website aplikasi resmi: <https://pretix.eu/>
-- Dokumentasi admin resmi: <https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html>
-- Depot kode aplikasi hulu: <https://github.com/pretix/pretix>
-- Gudang YunoHost: <https://apps.yunohost.org/app/pretix>
-- Laporkan bug: <https://github.com/YunoHost-Apps/pretix_ynh/issues>
+- Website aplikasi resmi: <https://pretalx.com/>
+- Dokumentasi admin resmi: <https://docs.pretalx.org/>
+- Depot kode aplikasi hulu: <https://github.com/pretalx/pretalx>
+- Gudang YunoHost: <https://apps.yunohost.org/app/pretalx>
+- Laporkan bug: <https://github.com/YunoHost-Apps/pretalx_ynh/issues>
 
 ## Info developer
 
-Silakan kirim pull request ke [`testing` branch](https://github.com/YunoHost-Apps/pretix_ynh/tree/testing).
+Silakan kirim pull request ke [`testing` branch](https://github.com/YunoHost-Apps/pretalx_ynh/tree/testing).
 
 Untuk mencoba branch `testing`, silakan dilanjutkan seperti:
 
 ```bash
-sudo yunohost app install https://github.com/YunoHost-Apps/pretix_ynh/tree/testing --debug
+sudo yunohost app install https://github.com/YunoHost-Apps/pretalx_ynh/tree/testing --debug
 atau
-sudo yunohost app upgrade pretix -u https://github.com/YunoHost-Apps/pretix_ynh/tree/testing --debug
+sudo yunohost app upgrade pretalx -u https://github.com/YunoHost-Apps/pretalx_ynh/tree/testing --debug
 ```
 
 **Info lebih lanjut mengenai pemaketan aplikasi:** <https://yunohost.org/packaging_apps>
