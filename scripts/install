@@ -42,9 +42,9 @@ ynh_script_progression "Installing Python dependencies..."
 pushd $install_dir
     python3 -m venv $install_dir/venv
     ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip setuptools wheel gunicorn
-    ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres]" --force
-    ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx migrate --force
-    ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx rebuild --force
+    ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres]"
+    ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx migrate
+    ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx rebuild
     #ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx init --noinput DJANGO_SUPERUSER_EMAIL=$email DJANGO_SUPERUSER_PASSWORD=$password
 popd
 
