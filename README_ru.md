@@ -3,47 +3,47 @@
 Он НЕ ДОЛЖЕН редактироваться вручную.
 -->
 
-# Pretix для YunoHost
+# Pretalx для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/pretix.svg)](https://ci-apps.yunohost.org/ci/apps/pretix/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/pretix.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/pretix.maintain.svg)
+[![Уровень интеграции](https://dash.yunohost.org/integration/pretalx.svg)](https://ci-apps.yunohost.org/ci/apps/pretalx/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/pretalx.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/pretalx.maintain.svg)
 
-[![Установите Pretix с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretix)
+[![Установите Pretalx с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pretalx)
 
 *[Прочтите этот README на других языках.](./ALL_README.md)*
 
-> *Этот пакет позволяет Вам установить Pretix быстро и просто на YunoHost-сервер.*  
+> *Этот пакет позволяет Вам установить Pretalx быстро и просто на YunoHost-сервер.*  
 > *Если у Вас нет YunoHost, пожалуйста, посмотрите [инструкцию](https://yunohost.org/install), чтобы узнать, как установить его.*
 
 ## Обзор
 
-Ticket shop application for conferences, festivals, concerts, tech events, shows, exhibitions, workshops, barcamps, etc.
+Pretalx is a conference planning tool focused on providing the best experience for organisers, speakers, reviewers, and attendees alike. It handles the submission process with a configurable Call for Participation, the reviewing and selection of submissions, and the scheduling and release handling. After the event, pretalx allows speakers to receive feedback, upload their slides, and organisers to embed recordings.
 
-**Поставляемая версия:** 2024.9.0~ynh1
+**Поставляемая версия:** 2024.3.1~ynh1
 
-**Демо-версия:** <https://pretix.eu/about/en/setup>
+**Демо-версия:** <https://pretalx.com/p/try>
 
 ## Снимки экрана
 
-![Снимок экрана Pretix](./doc/screenshots/screenshot.png)
+![Снимок экрана Pretalx](./doc/screenshots/screenshot.png)
 
 ## Документация и ресурсы
 
-- Официальный веб-сайт приложения: <https://pretix.eu/>
-- Официальная документация администратора: <https://docs.pretix.eu/en/latest/admin/installation/manual_smallscale.html>
-- Репозиторий кода главной ветки приложения: <https://github.com/pretix/pretix>
-- Магазин YunoHost: <https://apps.yunohost.org/app/pretix>
-- Сообщите об ошибке: <https://github.com/YunoHost-Apps/pretix_ynh/issues>
+- Официальный веб-сайт приложения: <https://pretalx.com/>
+- Официальная документация администратора: <https://docs.pretalx.org/>
+- Репозиторий кода главной ветки приложения: <https://github.com/pretalx/pretalx>
+- Магазин YunoHost: <https://apps.yunohost.org/app/pretalx>
+- Сообщите об ошибке: <https://github.com/YunoHost-Apps/pretalx_ynh/issues>
 
 ## Информация для разработчиков
 
-Пришлите Ваш запрос на слияние в [ветку `testing`](https://github.com/YunoHost-Apps/pretix_ynh/tree/testing).
+Пришлите Ваш запрос на слияние в [ветку `testing`](https://github.com/YunoHost-Apps/pretalx_ynh/tree/testing).
 
 Чтобы попробовать ветку `testing`, пожалуйста, сделайте что-то вроде этого:
 
 ```bash
-sudo yunohost app install https://github.com/YunoHost-Apps/pretix_ynh/tree/testing --debug
+sudo yunohost app install https://github.com/YunoHost-Apps/pretalx_ynh/tree/testing --debug
 или
-sudo yunohost app upgrade pretix -u https://github.com/YunoHost-Apps/pretix_ynh/tree/testing --debug
+sudo yunohost app upgrade pretalx -u https://github.com/YunoHost-Apps/pretalx_ynh/tree/testing --debug
 ```
 
 **Больше информации о пакетировании приложений:** <https://yunohost.org/packaging_apps>
