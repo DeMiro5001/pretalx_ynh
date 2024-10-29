@@ -5,6 +5,8 @@ After=network.target
 [Service]
 User=__APP__
 Group=__APP__
+Environment="VIRTUAL_ENV=__INSTALL_DIR__/venv"
+Environment="PATH=__INSTALL_DIR__/venv/bin:/usr/local/bin:/usr/bin:/bin"
 WorkingDirectory=__INSTALL_DIR__
 ExecStart=__INSTALL_DIR__/venv/bin/celery -A pretalx.celery_app worker -l info
 Restart=on-failure
