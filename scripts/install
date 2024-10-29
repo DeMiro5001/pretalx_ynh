@@ -32,7 +32,7 @@ pushd $install_dir
     ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade-strategy eager -U "pretalx[postgres]"  "pretalx[redis]"
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx migrate
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx rebuild
-    #ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx init
+    ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx init
 popd
 
 #=================================================
