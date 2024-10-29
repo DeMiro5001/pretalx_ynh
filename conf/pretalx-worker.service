@@ -1,0 +1,13 @@
+[Unit]
+Description=Pretalx background worker
+After=network.target
+
+[Service]
+User=__APP__
+Group=__APP__
+WorkingDirectory=__INSTALL_DIR__
+ExecStart=__INSTALL_DIR__/venv/bin/celery -A pretalx.celery_app worker -l info
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

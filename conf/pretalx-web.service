@@ -1,0 +1,16 @@
+[Unit]
+Description=Pretalx web service
+After=network.target
+
+[Service]
+User=__APP__
+Group=__APP__
+WorkingDirectory=__INSTALL_DIR__
+ExecStart=__INSTALL_DIR__/venv/bin/gunicorn pretalx.wsgi \
+                      --name pretalx --workers 4 \
+                      --max-requests 1200  --max-requests-jitter 50 \
+                      --log-level=info --bind=127.0.0.1:8345
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

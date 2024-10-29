@@ -1,0 +1,1 @@
+*/10 * * * * export PATH=__INSTALL_DIR__/venv/bin:$PATH && __INSTALL_DIR__/venv/bin/python -m pretalx runperiodic

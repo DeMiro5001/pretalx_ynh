@@ -1,0 +1,64 @@
+#!/bin/bash
+
+
+source ../settings/scripts/_common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# RESTORE THE APP MAIN DIR
+#=================================================
+ynh_script_progression "Restoring the app main directory..."
+
+ynh_restore "$install_dir"
+
+#=================================================
+# RESTORE THE DATA DIRECTORY
+#=================================================
+ynh_script_progression "Restoring the data directory..."
+
+ynh_restore "$data_dir"
+
+#=================================================
+# RESTORE THE MYSQL DATABASE
+#=================================================
+ynh_script_progression "Restoring the MySQL database..."
+
+ynh_psql_db_shell < ./db.sql
+
+#=================================================
+# RESTORE SYSTEM CONFIGURATIONS
+#=================================================
+ynh_script_progression "Restoring system configurations related to $app..."
+
+ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
+
+ynh_restore "/etc/systemd/system/${app}-web.service"
+ynh_restore "/etc/systemd/system/${app}-worker.service"
+
+systemctl enable "${app}-web" --quiet
+systemctl enable "${app}-worker" --quiet
+
+yunohost service add "${app}-web" --description="Ticket shop application" --log="/var/log/$app/$app.log"
+yunohost service add "${app}-worker" --description="Pretalx worker" --log="/var/log/$app/$app.log"
+
+#=================================================
+# RESTORE VARIOUS FILES
+#=================================================
+
+ynh_restore "/etc/cron.d/$app"
+
+#=================================================
+# RELOAD NGINX AND PHP-FPM OR THE APP SERVICE
+#=================================================
+ynh_script_progression "Reloading NGINX web server and $app's service..."
+
+ynh_systemctl --service="${app}-web" --action="start" --log_path="systemd"
+ynh_systemctl --service="${app}-worker" --action="start" --log_path="systemd"
+
+ynh_systemctl --service=nginx --action=reload
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_script_progression "Restoration completed for $app"
