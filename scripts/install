@@ -8,6 +8,9 @@ ynh_app_setting_set --key=secret_key --value=$secret_key
 
 email=$(ynh_user_get_info --username=$admin --key=mail)
 
+DJANGO_SUPERUSER_EMAIL=$email 
+DJANGO_SUPERUSER_PASSWORD=$password 
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
@@ -49,7 +52,7 @@ pushd $install_dir
     ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres]"
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx migrate
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx rebuild
-    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx init --noinput DJANGO_SUPERUSER_EMAIL=$email DJANGO_SUPERUSER_PASSWORD=$password
+    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx init --noinput
     deactivate
 popd
 
