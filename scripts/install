@@ -3,6 +3,8 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+secret_key=$(ynh_string_random --length=32)
+ynh_app_setting_set --key=secret_key --value=$secret_key
 
 email=$(ynh_user_get_info --username=$admin --key=mail)
 
