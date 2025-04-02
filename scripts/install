@@ -61,7 +61,8 @@ pushd $install_dir
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx migrate
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx rebuild
     ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx init --noinput
-    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx createsuperuser --email $email --password $password 
+    ./manage.py create_superuser --username="$admin" --email="$email"
+    #ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx createsuperuser --email $email --password $password 
     deactivate
 popd
 
