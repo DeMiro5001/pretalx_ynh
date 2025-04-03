@@ -50,7 +50,6 @@ chmod 600 "$install_dir/pretalx.cfg" "$install_dir/.env"
 chown "$app:$app" "$install_dir/pretalx.cfg" "$install_dir/.env"
 chown -R "$app:$app" "/var/log/$app"
 
-source "$install_dir/.env"
 
 #=================================================
 # INSTALL PYTHON DEPENDENCIES
@@ -58,8 +57,11 @@ source "$install_dir/.env"
 ynh_script_progression "Installing Python dependencies..."
 
 pushd $install_dir
-     ynh_exec_as_app python3 -m venv $install_dir/venv
-     ynh_exec_as_app source "$install_dir/venv/bin/activate"
+      su $app
+      python3 -m venv $install_dir/venv
+      source "$install_dir/venv/bin/activate"
+     source "$install_dir/.env"
+
 
     echo "PRETALX_INIT_ADMIN_EMAIL=$PRETALX_INIT_ADMIN_EMAIL"
     echo "PRETALX_INIT_ADMIN_USER=$PRETALX_INIT_ADMIN_USER"
@@ -67,15 +69,16 @@ pushd $install_dir
     echo "PRETALX_INIT_ORGANISER_NAME=$PRETALX_INIT_ORGANISER_NAME"
     echo "PRETALX_INIT_ORGANISER_SLUG=$PRETALX_INIT_ORGANISER_SLUG"
 
-     ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade pip setuptools wheel gunicorn django-redis
-     ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres,redis]"
-     ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx migrate
-     ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx rebuild
+      $install_dir/venv/bin/pip install --upgrade pip setuptools wheel gunicorn django-redis
+      $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres,redis]"
+      $install_dir/venv/bin/python3 -m pretalx migrate
+      $install_dir/venv/bin/python3 -m pretalx rebuild
     # $install_dir/venv/bin/python3 -m pretalx createsuperuser --noinput
-     ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx init --noinput
+    #  $install_dir/venv/bin/python3 -m pretalx init --noinput
     #./manage.py create_superuser --username="$admin" --email="$email"
     #ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx createsuperuser --email $email --password $password 
-    ynh_exec_as_app deactivate
+     deactivate
+     exit
 popd
 
 #=================================================
