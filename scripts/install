@@ -58,24 +58,24 @@ source "$install_dir/.env"
 ynh_script_progression "Installing Python dependencies..."
 
 pushd $install_dir
-     python3 -m venv $install_dir/venv
-     source "$install_dir/venv/bin/activate"
+     ynh_exec_as_app python3 -m venv $install_dir/venv
+     ynh_exec_as_app source "$install_dir/venv/bin/activate"
 
-    echo "DJANGO_SUPERUSER_EMAIL=$DJANGO_SUPERUSER_EMAIL"
-    echo "DJANGO_SUPERUSER_USERNAME=$DJANGO_SUPERUSER_USERNAME"
-    echo "DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD"
+    echo "PRETALX_INIT_ADMIN_EMAIL=$PRETALX_INIT_ADMIN_EMAIL"
+    echo "PRETALX_INIT_ADMIN_USER=$PRETALX_INIT_ADMIN_USER"
+    echo "PRETALX_INIT_ADMIN_PASSWORD=$PRETALX_INIT_ADMIN_PASSWORD"
     echo "PRETALX_INIT_ORGANISER_NAME=$PRETALX_INIT_ORGANISER_NAME"
     echo "PRETALX_INIT_ORGANISER_SLUG=$PRETALX_INIT_ORGANISER_SLUG"
 
-     $install_dir/venv/bin/pip install --upgrade pip setuptools wheel gunicorn django-redis
-     $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres,redis]"
-     $install_dir/venv/bin/python3 -m pretalx migrate
-     $install_dir/venv/bin/python3 -m pretalx rebuild
+     ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade pip setuptools wheel gunicorn django-redis
+     ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres,redis]"
+     ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx migrate
+     ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx rebuild
     # $install_dir/venv/bin/python3 -m pretalx createsuperuser --noinput
-    # $install_dir/venv/bin/python3 -m pretalx init --noinput
+     ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx init --noinput
     #./manage.py create_superuser --username="$admin" --email="$email"
     #ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx createsuperuser --email $email --password $password 
-    deactivate
+    ynh_exec_as_app deactivate
 popd
 
 #=================================================
