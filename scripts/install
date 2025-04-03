@@ -60,6 +60,12 @@ ynh_script_progression "Installing Python dependencies..."
 pushd $install_dir
     python3 -m venv $install_dir/venv
     source "$install_dir/venv/bin/activate"
+
+    echo "DJANGO_SUPERUSER_EMAIL=$DJANGO_SUPERUSER_EMAIL"
+    echo "DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD"
+    echo "PRETALX_INIT_ORGANISER_NAME=$PRETALX_INIT_ORGANISER_NAME"
+    echo "PRETALX_INIT_ORGANISER_SLUG=$PRETALX_INIT_ORGANISER_SLUG"
+
     ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip setuptools wheel gunicorn django-redis
     ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres,redis]"
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx migrate
