@@ -43,9 +43,12 @@ ynh_script_progression "Adding $app's configuration files..."
 
 ynh_config_add --template="pretalx.cfg" --destination="$install_dir/pretalx.cfg"
 ynh_config_add --template=".env" --destination="$install_dir/.env"
+mkdir -p /var/log/$app
+touch /var/log/$app/pretalx.log
 
 chmod 600 "$install_dir/pretalx.cfg" "$install_dir/.env"
 chown "$app:$app" "$install_dir/pretalx.cfg" "$install_dir/.env"
+chown -R "$app:$app" "/var/log/$app"
 
 source "$install_dir/.env"
 
