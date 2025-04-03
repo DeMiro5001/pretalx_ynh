@@ -7,6 +7,7 @@ secret_key=$(ynh_string_random --length=32)
 ynh_app_setting_set --key=secret_key --value=$secret_key
 
 email=$(ynh_user_get_info --username=$admin --key=mail)
+organiser_name=$admin
 
 redis_db=$(ynh_redis_get_free_db)
 ynh_app_setting_set --app=$app --key=redis_db --value=$redis_db
