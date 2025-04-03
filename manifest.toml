@@ -44,6 +44,9 @@ ram.runtime = "50M"
     [install.password]
     type = "password"
 
+    [install.organiser_slug]
+    type = "string"
+
 [resources]
 
     [resources.system_user]
