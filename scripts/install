@@ -16,9 +16,6 @@ celery_db=$(ynh_redis_get_free_db)
 ynh_app_setting_set --app=$app --key=celery_db --value=$celery_db
 redis_unlock "redis_db"
 
-#DJANGO_SUPERUSER_EMAIL=$email 
-#DJANGO_SUPERUSER_PASSWORD=$password 
-
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
@@ -44,9 +41,12 @@ chown -R $app:$app "$data_dir"
 ynh_script_progression "Adding $app's configuration files..."
 
 ynh_config_add --template="pretalx.cfg" --destination="$install_dir/pretalx.cfg"
+ynh_config_add --template=".env" --destination="$install_dir/.env"
 
-chmod 600 "$install_dir/pretalx.cfg"
-chown "$app:$app" "$install_dir/pretalx.cfg"
+chmod 600 "$install_dir/pretalx.cfg" "$install_dir/.env"
+chown "$app:$app" "$install_dir/pretalx.cfg" "$install_dir/.env"
+
+source .env
 
 #=================================================
 # INSTALL PYTHON DEPENDENCIES
@@ -60,7 +60,7 @@ pushd $install_dir
     ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres,redis]"
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx migrate
     ynh_hide_warnings $install_dir/venv/bin/python3 -m pretalx rebuild
-    #ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx init --noinput --email="$email"
+    ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx init --noinput
     #./manage.py create_superuser --username="$admin" --email="$email"
     #ynh_hide_warnings ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx createsuperuser --email $email --password $password 
     deactivate
