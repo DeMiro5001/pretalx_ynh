@@ -67,6 +67,11 @@ pushd $install_dir
       $install_dir/venv/bin/python3 -m pretalx migrate
       $install_dir/venv/bin/python3 -m pretalx rebuild
 
+    echo "DJANGO_SUPERUSER_EMAIL=$email"
+    echo "PRETALX_INIT_ADMIN_PASSWORD=$password"
+    echo "PRETALX_INIT_ORGANISER_NAME=$organiser_name"
+    echo "PRETALX_INIT_ORGANISER_SLUG=$organiser_slug"
+
       PRETALX_INIT_ORGANISER_NAME="__ORGANISER_NAME__" PRETALX_INIT_ORGANISER_SLUG="__ORGANISER_SLUG__" DJANGO_SUPERUSER_EMAIL="__EMAIL__" DJANGO_SUPERUSER_PASSWORD="__PASSWORD__" $install_dir/venv/bin/python3 -m pretalx init --noinput
 
       deactivate
