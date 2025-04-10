@@ -59,7 +59,6 @@ chown -R "$app:$app" "/var/log/$app"
 ynh_script_progression "Installing Python dependencies..."
 
 pushd $install_dir
-      su $app
       python3 -m venv $install_dir/venv
       source "$install_dir/venv/bin/activate"
 
@@ -71,7 +70,6 @@ pushd $install_dir
       PRETALX_INIT_ORGANISER_NAME="__ORGANISER_NAME__" PRETALX_INIT_ORGANISER_SLUG="__ORGANISER_SLUG__" DJANGO_SUPERUSER_EMAIL="__EMAIL__" DJANGO_SUPERUSER_PASSWORD="__PASSWORD__" $install_dir/venv/bin/python3 -m pretalx init --noinput
 
       deactivate
-      exit
 popd
 
 #=================================================
