@@ -68,10 +68,11 @@ pushd $install_dir
 
 #      chown -R $app:$app "$install_dir"
 
+      export PATH="$PATH:$nodejs_dir" 
       ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx migrate
       ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx rebuild
 
-#      chown -R $app:$app "$install_dir"
+      chown -R $app:$app "$install_dir"
 
       ynh_exec_as_app PRETALX_INIT_ORGANISER_NAME="$organiser_name" PRETALX_INIT_ORGANISER_SLUG="$organiser_slug" DJANGO_SUPERUSER_EMAIL="$email" DJANGO_SUPERUSER_PASSWORD="$password" $install_dir/venv/bin/python3 -m pretalx init --noinput
       chown -R $app:$app "$install_dir"
