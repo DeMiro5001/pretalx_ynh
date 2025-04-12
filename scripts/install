@@ -11,11 +11,17 @@ organiser_name=$admin
 
 redis_db=$(ynh_redis_get_free_db)
 ynh_app_setting_set --app=$app --key=redis_db --value=$redis_db
-redis_lock "redis_db" 
+redis_lock "$redis_db" 
 
 celery_db=$(ynh_redis_get_free_db)
 ynh_app_setting_set --app=$app --key=celery_db --value=$celery_db
-redis_unlock "redis_db"
+redis_lock "$celery_db"
+
+web_db=$(ynh_redis_get_free_db)
+ynh_app_setting_set --app=$app --key=web_db --value=$web_db
+
+redis_unlock "$redis_db"
+redis_unlock "$celery_db"
 
 #=================================================
 # INSTALL DEPENDENCIES
