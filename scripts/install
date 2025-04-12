@@ -55,8 +55,8 @@ touch "/var/log/$app/$app-web.log"
 touch "/var/log/$app/$app-worker.log"
 
 chmod 600 "$install_dir/pretalx.cfg"
-chown "$app:www-data " "$install_dir/pretalx.cfg"
-chown -R "$app:www-data " "/var/log/$app"
+chown "$app:www-data" "$install_dir/pretalx.cfg"
+chown -R "$app:www-data" "/var/log/$app"
 
 
 #=================================================
