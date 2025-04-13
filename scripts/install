@@ -33,7 +33,7 @@ ynh_nodejs_install
 #=================================================
 ynh_script_progression "Setting up source files..."
 
-mkdir -p $install_dir/data/media
+mkdir -p $data_dir/media
 
 chmod -R 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
