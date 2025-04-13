@@ -56,7 +56,6 @@ chmod 600 "$install_dir/pretalx.cfg"
 chown "$app:www-data" "$install_dir/pretalx.cfg"
 chown -R "$app:www-data" "/var/log/$app"
 
-
 #=================================================
 # INSTALL PYTHON DEPENDENCIES
 #=================================================
@@ -69,6 +68,7 @@ pushd $install_dir
       ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres,redis]"
       export PATH="$PATH:$nodejs_dir" 
       ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx migrate
+      chown -R $app:www-data "$install_dir" 
       ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx rebuild
 #      chown -R $app:www-data "$install_dir"
       ynh_exec_as_app PRETALX_INIT_ORGANISER_NAME="$organiser_name" PRETALX_INIT_ORGANISER_SLUG="$organiser_slug" DJANGO_SUPERUSER_EMAIL="$email" DJANGO_SUPERUSER_PASSWORD="$password" $install_dir/venv/bin/python3 -m pretalx init --noinput
