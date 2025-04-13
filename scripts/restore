@@ -60,7 +60,7 @@ mkdir -p /var/log/$app
 touch /var/log/$app/pretalx.log
 touch "/var/log/$app/$app-web.log"
 touch "/var/log/$app/$app-worker.log"
-
+chown -R "$app:www-data" "/var/log/$app"
 
 ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
 
