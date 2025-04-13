@@ -10,11 +10,9 @@ email=$(ynh_user_get_info --username=$admin --key=mail)
 organiser_name=$admin
 
 redis_db=$(ynh_redis_get_free_db)
-ynh_app_setting_set --app=$app --key=redis_db --value=$redis_db
 redis_lock "$redis_db" 
 
 celery_db=$(ynh_redis_get_free_db)
-ynh_app_setting_set --app=$app --key=celery_db --value=$celery_db
 redis_lock "$celery_db"
 
 web_db=$(ynh_redis_get_free_db)
@@ -67,21 +65,14 @@ ynh_script_progression "Installing Python dependencies..."
 pushd $install_dir
       ynh_exec_as_app python3 -m venv $install_dir/venv
       source "$install_dir/venv/bin/activate"
-
       ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade pip setuptools wheel gunicorn django-redis
       ynh_exec_as_app $install_dir/venv/bin/pip install --upgrade-strategy eager --upgrade "pretalx[postgres,redis]"
-
-#      chown -R $app:$app "$install_dir"
-
       export PATH="$PATH:$nodejs_dir" 
       ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx migrate
       ynh_exec_as_app $install_dir/venv/bin/python3 -m pretalx rebuild
-
-      chown -R $app:www-data "$install_dir"
-
+#      chown -R $app:www-data "$install_dir"
       ynh_exec_as_app PRETALX_INIT_ORGANISER_NAME="$organiser_name" PRETALX_INIT_ORGANISER_SLUG="$organiser_slug" DJANGO_SUPERUSER_EMAIL="$email" DJANGO_SUPERUSER_PASSWORD="$password" $install_dir/venv/bin/python3 -m pretalx init --noinput
       chown -R $app:www-data "$install_dir"
-
       deactivate
 popd
 
