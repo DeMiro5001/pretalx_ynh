@@ -49,6 +49,12 @@ ram.runtime = "50M"
 
 [resources]
 
+    [resources.sources.main]
+    url = "https://github.com/pretalx/pretalx/releases/download/v2024.3.1/pretalx-2024.3.1-py3-none-any.whl"
+    sha256 = "2d5d259fbb5ff2c280a2ee653b285e04aaa1ab17a951c4f78a8c28cc88dbdddd"
+
+    autoupdate.strategy = "latest_github_tag"
+    
     [resources.system_user]
     allow_email = true
 
