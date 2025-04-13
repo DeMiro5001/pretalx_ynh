@@ -54,8 +54,8 @@ ynh_restore "/etc/systemd/system/${app}-worker.service"
 systemctl enable "${app}-web" --quiet
 systemctl enable "${app}-worker" --quiet
 
-yunohost service add "${app}-web" --description="Conference management application" --log="/var/log/$app/$app.log"
-yunohost service add "${app}-worker" --description="Pretalx worker" --log="/var/log/$app/$app.log"
+yunohost service add "${app}-web" --description="Conference management application" --log="/var/log/$app/$app-web.log"
+yunohost service add "${app}-worker" --description="Pretalx worker" --log="/var/log/$app/$app-worker.log"
 
 #=================================================
 # RESTORE VARIOUS FILES
