@@ -22,6 +22,19 @@ ynh_script_progression "Updating NGINX web server configuration..."
 
 ynh_config_change_url_nginx
 
+# Prepare redis dbs
+redis_db=$(ynh_redis_get_free_db)
+redis_lock "$redis_db" 
+
+celery_db=$(ynh_redis_get_free_db)
+redis_lock "$celery_db"
+
+web_db=$(ynh_redis_get_free_db)
+
+redis_unlock "$redis_db"
+redis_unlock "$celery_db"
+
+# Refresh config
 ynh_config_add --template="pretalx.cfg" --destination="$install_dir/pretalx.cfg"
 chmod 600 "$install_dir/pretalx.cfg"
 chown "$app:www-data" "$install_dir/pretalx.cfg"
