@@ -63,7 +63,6 @@ celery_db=$(ynh_redis_get_free_db)
 redis_lock "$celery_db"
 
 web_db=$(ynh_redis_get_free_db)
-ynh_app_setting_set --app=$app --key=web_db --value=$web_db
 
 redis_unlock "$redis_db"
 redis_unlock "$celery_db"
