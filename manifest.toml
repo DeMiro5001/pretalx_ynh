@@ -45,7 +45,10 @@ ram.runtime = "50M"
     type = "password"
 
     [install.organiser_slug]
+    ask.en = "Specify the slug of your organisation"
+    ask.fr = "Spécifiez le slogan de votre organisation"
     type = "string"
+    default = "YunoHost"
 
 [resources]
 
